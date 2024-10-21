@@ -3,13 +3,12 @@
 import { useEffect, useState, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Github, Linkedin, Mail, ChevronDown } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from 'next/image'
 
-const CustomCursor = ({ mousePosition }) => (
+const CustomCursor = ({ mousePosition }: { mousePosition: { x: number; y: number } }) => (
   <motion.div
     className="pointer-events-none fixed left-0 top-0 h-48 w-48 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-3xl"
     animate={{
@@ -24,7 +23,7 @@ const CustomCursor = ({ mousePosition }) => (
   />
 )
 
-const SkillBadge = ({ logo, experience }) => (
+const SkillBadge = ({ logo, experience }: { logo: string; experience: number }) => (
   <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg p-4 min-w-[80px] h-[80px]">
     <Image src={logo} alt="Skill logo" width={32} height={32} className="mb-2" />
     <div className="w-full bg-gray-700 rounded-full h-1.5">
@@ -45,15 +44,17 @@ export default function Page() {
   const educationRef = useRef(null)
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
+    const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener('mousemove', updateMousePosition)
     return () => window.removeEventListener('mousemove', updateMousePosition)
   }, [])
 
-  const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' })
+  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   const skills = [
@@ -119,9 +120,9 @@ export default function Page() {
               <h1 className="mb-2 text-4xl font-bold text-white">Kaiki Kano</h1>
               <p className="mb-4 text-xl text-purple-400">Backend and AI Engineer</p>
               <p className="text-gray-300 leading-relaxed">
-                I'm a student at Seikei University in Tokyo, passionate about becoming a full stack engineer.
+                I&apos;m a student at Seikei University in Tokyo, passionate about becoming a full stack engineer.
                 I aim to grow in the world of technology and create innovative solutions.
-                I'm particularly interested in web development and AI, and I'm constantly learning new technologies.
+                I&apos;m particularly interested in web development and AI, and I&apos;m constantly learning new technologies.
               </p>
             </div>
           </div>
