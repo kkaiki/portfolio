@@ -140,8 +140,15 @@ export default function DynamicScrollPortfolio() {
       <div className="relative">
         <AnimatedSection>
           <div className="text-center">
+            <Image 
+              src="/profile.jpg" 
+              alt="Profile Picture" 
+              className="rounded-full mx-auto mb-4" 
+              width={250}
+              height={250}
+            />
             <h1 className="text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
-            <p className="text-xl mb-8">Scroll down for a journey through my work</p>
+            <p className="text-xl mb-4">I&apos;m a student at Seikei University in Tokyo, passionate about becoming a full stack engineer. I aim to grow in the world of technology and create innovative solutions. I&apos;m particularly interested in web development and AI, and I&apos;m constantly learning new technologies.</p>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
