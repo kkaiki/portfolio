@@ -32,6 +32,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - **TypeScript**: A strongly typed programming language that builds on JavaScript.
 - **Tailwind CSS**: A utility-first CSS framework for styling.
 
+### **Authors and Contributors**
+
+- **Author**: Kaiki Kano
+
 ### **Contact**
 
 Feel free to connect via email or through GitHub and LinkedIn:

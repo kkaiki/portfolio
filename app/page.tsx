@@ -353,7 +353,7 @@ export default function DynamicScrollPortfolio() {
 
         <AnimatedSection>
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-8">Thank You</h2>
+            <h2 className="text-4xl font-bold mb-8">Thank You!</h2>
             <p className="text-xl">Thank you for visiting my portfolio. I hope you enjoyed it!</p>
           </div>
         </AnimatedSection>
