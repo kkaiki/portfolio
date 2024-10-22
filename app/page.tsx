@@ -255,7 +255,8 @@ export default function DynamicScrollPortfolio() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
               { title: "DevInsight", desc: "It is something created in our circle, and it can be integrated with Discord, allowing us to track the time spent working with editors like Vecode", url: "https://github.com/kkaiki/DevInsight" },
-              ].map((project, index) => (
+              { title: "My Portfolio", desc: "", url: "https://github.com/kkaiki/portfolio" },
+            ].map((project, index) => (
               <FadeInWhenVisible key={index}>
             <Card className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
             <CardContent className="p-6">
@@ -347,6 +348,13 @@ export default function DynamicScrollPortfolio() {
           LinkedIn
               </Button>
             </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-8">Thank You</h2>
+            <p className="text-xl">Thank you for visiting my portfolio. I hope you enjoyed it!</p>
           </div>
         </AnimatedSection>
       </div>
