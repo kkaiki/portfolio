@@ -11,26 +11,11 @@ const wrap = (min: number, max: number, v: number) => {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
 }
 
-const AnimatedSection = ({ children, index }: { children: React.ReactNode; index: number }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  })
-
-  const clipProgress = useTransform(scrollYProgress, [0, 0.4, 0.6], [100, 100, 0])
-  const clip = useTransform(clipProgress, (v) => `inset(0 0 ${100 - v}% 0)`)
-
-  return (
-    <div ref={ref} className="h-[200vh] relative">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        <motion.div style={{ clipPath: clip }}>
-          {children}
-        </motion.div>
-      </div>
-    </div>
-  )
-}
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <section className={`min-h-screen flex items-center justify-center ${className}`}>
+    {children}
+  </section>
+)
 
 const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef(null)
@@ -40,19 +25,8 @@ const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        transition: {
-          duration: 0.8,
-          y: {
-            type: "spring",
-            damping: 5,
-            stiffness: 100,
-            restDelta: 0.001
-          }
-        }
-      } : { opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8 }}
     >
       {children}
     </motion.div>
@@ -97,7 +71,7 @@ const ParallaxText = ({ children, baseVelocity = 100 }: { children: React.ReactN
   )
 }
 
-export default function DynamicScrollPortfolio() {
+export function AppleStylePortfolioComponent() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -106,7 +80,7 @@ export default function DynamicScrollPortfolio() {
   })
 
   const [currentSection, setCurrentSection] = useState(0)
-  const sectionRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)]
+  const sectionRefs = [useRef<HTMLElement>(null), useRef<HTMLElement>(null), useRef<HTMLElement>(null), useRef<HTMLElement>(null)]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -130,14 +104,14 @@ export default function DynamicScrollPortfolio() {
   }, [])
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white overflow-hidden">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
         style={{ scaleX }}
       />
 
-      <div className="relative">
-        <AnimatedSection index={0}>
+      <Section ref={sectionRefs[0]} className="bg-gradient-to-b from-purple-900 to-black">
+        <FadeInWhenVisible>
           <div className="text-center">
             <h1 className="text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
             <p className="text-xl mb-8">Scroll down for a journey through my work</p>
@@ -148,61 +122,67 @@ export default function DynamicScrollPortfolio() {
               <ChevronDown className="w-8 h-8 mx-auto" />
             </motion.div>
           </div>
-        </AnimatedSection>
+        </FadeInWhenVisible>
+      </Section>
 
-        <AnimatedSection index={1}>
-          <div className="container mx-auto px-4">
+      <Section ref={sectionRefs[1]} className="bg-gradient-to-b from-black to-blue-900">
+        <div className="container mx-auto px-4">
+          <FadeInWhenVisible>
             <h2 className="text-4xl font-bold mb-8">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { title: "AI-Powered App", desc: "Revolutionizing user experiences with artificial intelligence" },
-                { title: "Blockchain Solution", desc: "Secure and transparent transactions for the future" },
-                { title: "IoT Platform", desc: "Connecting devices for smarter living" },
-              ].map((project, index) => (
-                <FadeInWhenVisible key={index}>
-                  <Card className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
-                    <CardContent className="p-6">
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-gray-300 mb-4">{project.desc}</p>
-                      <Button variant="outline" className="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all duration-300">
-                        Learn More
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </FadeInWhenVisible>
-              ))}
-            </div>
+          </FadeInWhenVisible>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "AI-Powered App", desc: "Revolutionizing user experiences with artificial intelligence" },
+              { title: "Blockchain Solution", desc: "Secure and transparent transactions for the future" },
+              { title: "IoT Platform", desc: "Connecting devices for smarter living" },
+            ].map((project, index) => (
+              <FadeInWhenVisible key={index}>
+                <Card className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-gray-300 mb-4">{project.desc}</p>
+                    <Button variant="outline" className="bg-white bg-opacity-20 hover:bg-opacity-30 transition-all duration-300">
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              </FadeInWhenVisible>
+            ))}
           </div>
-        </AnimatedSection>
+        </div>
+      </Section>
 
-        <AnimatedSection index={2}>
-          <div className="container mx-auto px-4">
+      <Section ref={sectionRefs[2]} className="bg-gradient-to-b from-blue-900 to-green-900">
+        <div className="container mx-auto px-4">
+          <FadeInWhenVisible>
             <h2 className="text-4xl font-bold mb-8">Skills & Expertise</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {[
-                "React", "Node.js", "Python", "Machine Learning",
-                "Cloud Computing", "DevOps", "UI/UX Design", "Data Analysis"
-              ].map((skill, index) => (
-                <FadeInWhenVisible key={index}>
-                  <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4 text-center">
-                    <h3 className="text-xl font-bold">{skill}</h3>
-                  </div>
-                </FadeInWhenVisible>
-              ))}
-            </div>
+          </FadeInWhenVisible>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {[
+              "React", "Node.js", "Python", "Machine Learning",
+              "Cloud Computing", "DevOps", "UI/UX Design", "Data Analysis"
+            ].map((skill, index) => (
+              <FadeInWhenVisible key={index}>
+                <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4 text-center">
+                  <h3 className="text-xl font-bold">{skill}</h3>
+                </div>
+              </FadeInWhenVisible>
+            ))}
           </div>
-        </AnimatedSection>
+        </div>
+      </Section>
 
-        <AnimatedSection index={3}>
-          <div className="container mx-auto px-4 text-center">
+      <Section ref={sectionRefs[3]} className="bg-gradient-to-b from-green-900 to-purple-900">
+        <div className="container mx-auto px-4 text-center">
+          <FadeInWhenVisible>
             <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
             <p className="text-xl mb-8">Ready to start your next project? Let's create something amazing together.</p>
             <Button className="bg-white text-black hover:bg-gray-200 transition-all duration-300">
               Get In Touch
             </Button>
-          </div>
-        </AnimatedSection>
-      </div>
+          </FadeInWhenVisible>
+        </div>
+      </Section>
 
       <ParallaxText baseVelocity={-5}>Innovate • Create • Inspire</ParallaxText>
 
@@ -212,7 +192,7 @@ export default function DynamicScrollPortfolio() {
             key={index}
             variant="ghost"
             className={`mx-2 ${currentSection === index ? 'text-white' : 'text-gray-400'}`}
-            onClick={() => sectionRefs[index].current?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => sectionRefs[index].current.scrollIntoView({ behavior: 'smooth' })}
           >
             •
           </Button>

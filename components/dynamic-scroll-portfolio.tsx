@@ -18,7 +18,7 @@ const AnimatedSection = ({ children, index }: { children: React.ReactNode; index
     offset: ["start start", "end start"]
   })
 
-  const clipProgress = useTransform(scrollYProgress, [0, 0.4, 0.6], [100, 100, 0])
+  const clipProgress = useTransform(scrollYProgress, [0, 0.5], [100, 0])
   const clip = useTransform(clipProgress, (v) => `inset(0 0 ${100 - v}% 0)`)
 
   return (
@@ -97,7 +97,7 @@ const ParallaxText = ({ children, baseVelocity = 100 }: { children: React.ReactN
   )
 }
 
-export default function DynamicScrollPortfolio() {
+export function DynamicScrollPortfolioComponent() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
