@@ -172,27 +172,43 @@ export default function DynamicScrollPortfolio() {
                   title: "Wevnal Inc.", 
                   location: "Tokyo", 
                   duration: "2024 Jun - Present", 
-                  description: "With extensive experience in backend development and AI, I am seeking opportunities to leverage my skills in these areas. I am passionate about creating innovative solutions and contributing to cutting-edge projects." 
+                  description: "Based on my backend experience, I created a Docker environment from scratch and executed a task to categorize conversation data using machine learning.",
+                  logo: "/company/wevnal.png"
                 },
                 { 
                   title: "Chobirich Inc.", 
                   location: "Tokyo", 
-                  duration: "2024", 
-                  description: "Working as a backend engineer using Laravel."
+                  duration: "2024 May - 2024 April", 
+                  description: "Working as a backend engineer using Laravel.",
+                  logo: "/company/chobirich.jpg"
                 },
                 { 
-                  title: "Partsone Inc. (Internship)", 
+                  title: "Partsone Inc.", 
                   location: "Tokyo", 
                   duration: "2023 Jun - 2024 Jul", 
-                  description: "Contributed to the development of a specialized website for selling used automotive parts. Primarily worked on the backend using Laravel, and engaged in frontend development with JavaScript and TypeScript using React." 
+                  description: "Contributed to the development of a specialized website for selling used automotive parts. Primarily worked on the backend using Laravel, and engaged in frontend development with JavaScript and TypeScript using React.",
+                  logo: "/company/partsone.png"
                 },
               ].map((experience, index) => (
                 <FadeInWhenVisible key={index}>
                   <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105">
-                    <h3 className="text-3xl font-bold text-white">{experience.title}</h3>
-                    <p className="text-gray-400">{experience.location}</p>
-                    <p className="text-gray-500">{experience.duration}</p>
-                    <p className="text-gray-300 mt-2">{experience.description}</p>
+                    <div className="flex items-center">
+                      {experience.logo && (
+                        <Image 
+                          src={experience.logo} 
+                          alt={`${experience.title} logo`} 
+                          className="mr-4"
+                          width={40}
+                          height={40}
+                        />
+                      )}
+                      <h3 className="text-3xl font-bold text-white">{experience.title}</h3>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-gray-400">{experience.location}</p>
+                      <p className="text-gray-500">{experience.duration}</p>
+                      <p className="text-gray-300 mt-2">{experience.description}</p>
+                    </div>
                   </div>
                 </FadeInWhenVisible>
               ))}
