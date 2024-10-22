@@ -164,6 +164,76 @@ export default function DynamicScrollPortfolio() {
         </AnimatedSection>
 
         <AnimatedSection>
+          <div className="container mx-auto px-4 py-8">
+            <div className="space-y-8">
+              <h2 className="text-5xl font-extrabold mb-8 text-gradient">Experience</h2>
+              {[
+                { 
+                  title: "Wevnal Inc.", 
+                  location: "Tokyo", 
+                  duration: "2024 Jun - Present", 
+                  description: "With extensive experience in backend development and AI, I am seeking opportunities to leverage my skills in these areas. I am passionate about creating innovative solutions and contributing to cutting-edge projects." 
+                },
+                { 
+                  title: "Chobirich Inc.", 
+                  location: "Tokyo", 
+                  duration: "2024", 
+                  description: "Working as a backend engineer using Laravel."
+                },
+                { 
+                  title: "Partsone Inc. (Internship)", 
+                  location: "Tokyo", 
+                  duration: "2023 Jun - 2024 Jul", 
+                  description: "Contributed to the development of a specialized website for selling used automotive parts. Primarily worked on the backend using Laravel, and engaged in frontend development with JavaScript and TypeScript using React." 
+                },
+              ].map((experience, index) => (
+                <FadeInWhenVisible key={index}>
+                  <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105">
+                    <h3 className="text-3xl font-bold text-white">{experience.title}</h3>
+                    <p className="text-gray-400">{experience.location}</p>
+                    <p className="text-gray-500">{experience.duration}</p>
+                    <p className="text-gray-300 mt-2">{experience.description}</p>
+                  </div>
+                </FadeInWhenVisible>
+              ))}
+            </div>
+
+            <hr className="my-12 border-gray-700" />
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <div className="container mx-auto px-4 py-8">
+            <div className="space-y-8">
+              <h2 className="text-5xl font-extrabold mb-8 text-gradient">Education</h2>
+              {[
+                { 
+                  title: "Co-op program", 
+                  location: "Vancouver", 
+                  duration: "2024 Oct - 2025 Sep", 
+                  description: "I'm using a co-op program to explore whether I can work as an engineer abroad and to broaden my life choices."
+                },
+                { 
+                  title: "Seikei Univ.", 
+                  location: "Tokyo", 
+                  duration: "2022 - 2027", 
+                  description: "Pursuing a degree in Data science with a focus on AI and machine learning."
+                },
+              ].map((education, index) => (
+                <FadeInWhenVisible key={index}>
+                  <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105">
+                    <h3 className="text-3xl font-bold text-white">{education.title}</h3>
+                    <p className="text-gray-400">{education.location}</p>
+                    <p className="text-gray-500">{education.duration}</p>
+                    <p className="text-gray-300 mt-2">{education.description}</p>
+                  </div>
+                </FadeInWhenVisible>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection>
             <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold mb-8">Featured Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
