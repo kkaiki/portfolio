@@ -226,10 +226,29 @@ export default function DynamicScrollPortfolio() {
         <AnimatedSection index={3}>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-8">Let&apos;s Connect</h2>
-            <p className="text-xl mb-8">Ready to start your next project? Let&apos;s create something amazing together.</p>
-            <Button className="bg-white text-black hover:bg-gray-200 transition-all duration-300">
-              Get In Touch
-            </Button>
+            <div className="flex justify-center space-x-4 mb-8">
+              <Button 
+          className="bg-white text-gray-800 hover:bg-gray-200 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
+          onClick={() => window.location.href = 'mailto:kanokaiki@gmail.com'}
+              >
+          <Image src="/images/email.svg" alt="Email" width={32} height={32} className="mr-4" />
+          Email
+              </Button>
+              <Button 
+          className="bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
+          onClick={() => window.open('https://github.com/kkaiki', '_blank')}
+              >
+          <Image src="/images/github.svg" alt="GitHub" width={32} height={32} className="mr-4" />
+          GitHub
+              </Button>
+              <Button 
+          className="bg-gradient-to-r from-blue-700 to-blue-900 text-white hover:from-blue-800 hover:to-blue-900 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
+          onClick={() => window.open('https://www.linkedin.com/in/kaiki-kano-18a658238/', '_blank')}
+              >
+          <Image src="/images/linkedin.svg" alt="LinkedIn" width={32} height={32} className="mr-4" />
+          LinkedIn
+              </Button>
+            </div>
           </div>
         </AnimatedSection>
       </div>
