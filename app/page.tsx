@@ -199,11 +199,11 @@ export default function DynamicScrollPortfolio() {
               { name: "Backend Development", level: 80 },
               { name: "Frontend Development", level: 50 },
               { name: "Machine Learning", level: 60 },
-              { name: "Laravel", level: 80, image: "/images/laravel.svg" },
-              { name: "Python", level: 80, image: "/images/python.svg" },
-              { name: "MySQL", level: 60, image: "/images/mysql.svg" },
-              { name: "React", level: 50, image: "/images/react.svg" },
-              { name: "Nextjs", level: 60, image: "/images/nextjs.svg" }
+              { name: "Laravel", level: 80, image: "/laravel.svg" },
+              { name: "Python", level: 80, image: "/python.svg" },
+              { name: "MySQL", level: 60, image: "/mysql.svg" },
+              { name: "React", level: 50, image: "/react.svg" },
+              { name: "Nextjs", level: 60, image: "/nextjs.svg" }
             ].map((skill, index) => (
               <FadeInWhenVisible key={index}>
               <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4 h-full flex flex-col justify-between">
@@ -243,21 +243,21 @@ export default function DynamicScrollPortfolio() {
           className="bg-white text-gray-800 hover:bg-gray-200 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
           onClick={() => window.location.href = 'mailto:kanokaiki@gmail.com'}
               >
-          <Image src="/images/email.svg" alt="Email" width={32} height={32} className="mr-4" />
+          <Image src="/email.svg" alt="Email" width={32} height={32} className="mr-4" />
           Email
               </Button>
               <Button 
           className="bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
           onClick={() => window.open('https://github.com/kkaiki', '_blank')}
               >
-          <Image src="/images/github.svg" alt="GitHub" width={32} height={32} className="mr-4" />
+          <Image src="/github.svg" alt="GitHub" width={32} height={32} className="mr-4" />
           GitHub
               </Button>
               <Button 
           className="bg-gradient-to-r from-blue-700 to-blue-900 text-white hover:from-blue-800 hover:to-blue-900 transition-all duration-300 flex items-center px-8 py-4 rounded-full shadow-lg text-lg transform hover:scale-105"
           onClick={() => window.open('https://www.linkedin.com/in/kaiki-kano-18a658238/', '_blank')}
               >
-          <Image src="/images/linkedin.svg" alt="LinkedIn" width={32} height={32} className="mr-4" />
+          <Image src="/linkedin.svg" alt="LinkedIn" width={32} height={32} className="mr-4" />
           LinkedIn
               </Button>
             </div>
