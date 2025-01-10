@@ -106,35 +106,6 @@ export default function DynamicScrollPortfolio() {
     restDelta: 0.001
   })
 
-  const [currentSection, setCurrentSection] = useState(0)
-  const sectionRefs = useRef([
-    useRef<HTMLDivElement>(null), 
-    useRef<HTMLDivElement>(null), 
-    useRef<HTMLDivElement>(null), 
-    useRef<HTMLDivElement>(null)
-  ]).current
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCurrentSection(sectionRefs.findIndex((ref) => ref.current === entry.target))
-          }
-        })
-      },
-      { threshold: 0.5 }
-    )
-
-    sectionRefs.forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [sectionRefs])
-
   return (
     <div className="bg-black text-white">
       <motion.div
@@ -360,19 +331,6 @@ export default function DynamicScrollPortfolio() {
       </div>
 
       <ParallaxText baseVelocity={-5}>Innovate • Create • Inspire</ParallaxText>
-
-      <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-full px-4 py-2 z-50">
-        {[0, 1, 2, 3].map((index) => (
-          <Button
-            key={index}
-            variant="ghost"
-            className={`mx-2 ${currentSection === index ? 'text-white' : 'text-gray-400'}`}
-            onClick={() => sectionRefs[index].current?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            •
-          </Button>
-        ))}
-      </nav>
 
       <style jsx global>{`
         html {

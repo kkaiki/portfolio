@@ -16,6 +16,15 @@ pnpm dev
 bun dev
 ```
 
+### 
+```bash
+rm -rf node_modules
+rm package-lock.json
+npm install
+npm install next react react-dom
+npm run dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the application. You can edit the main page by modifying `app/page.tsx`. The application will automatically update as you make changes.
 
 ### **Features**
