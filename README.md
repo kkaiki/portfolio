@@ -16,7 +16,7 @@ pnpm dev
 bun dev
 ```
 
-### 
+### How to repair start the development server command
 ```bash
 rm -rf node_modules
 rm package-lock.json
