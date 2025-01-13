@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
 import Image from 'next/image'
 import SkillsSection from '@/components/SkillSection'
+import LoadingAnimation from '@/components/LoadingAnimation';
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
@@ -224,6 +225,7 @@ export default function DynamicScrollPortfolio() {
 
   return (
     <div className="bg-black text-white">
+      <LoadingAnimation />
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
         style={{ scaleX }}
