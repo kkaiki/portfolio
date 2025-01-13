@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
 import Image from 'next/image'
+import SkillsSection from '@/components/SkillSection'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
@@ -311,50 +312,8 @@ export default function DynamicScrollPortfolio() {
             </div>
         </AnimatedSection>
 
-        <AnimatedSection>
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-8">Skills & Expertise</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {[
-              { name: "Backend Development", level: 80 },
-              { name: "Frontend Development", level: 50 },
-              { name: "Machine Learning", level: 60 },
-              { name: "Laravel", level: 80, image: "/laravel.svg" },
-              { name: "Python", level: 80, image: "/python.svg" },
-              { name: "MySQL", level: 60, image: "/mysql.svg" },
-              { name: "React", level: 50, image: "/react.svg" },
-              { name: "Nextjs", level: 60, image: "/nextjs.svg" }
-            ].map((skill, index) => (
-              <FadeInWhenVisible key={index}>
-              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-4 h-full flex flex-col justify-between">
-                <div className="flex items-center">
-                {skill.image && (
-                  <Image 
-                  src={skill.image} 
-                  alt={`${skill.name} logo`} 
-                  className="h-16 w-16 mr-4" 
-                  width={64}
-                  height={64}
-                  />
-                )}
-                <h3 className={`text-xl font-bold ${!skill.image ? 'ml-0' : ''}`}>{skill.name}</h3>
-                </div>
-                <div className="w-full bg-gray-300 rounded-full h-2.5 mt-2">
-                <div 
-                  className="h-2.5 rounded-full" 
-                  style={{ 
-                  width: `${skill.level}%`, 
-                  backgroundImage: 'linear-gradient(to right, #0110FC, #000439)' 
-                  }}
-                ></div>
-                </div>
-              </div>
-              </FadeInWhenVisible>
-            ))}
-            </div>
-          </div>
-        </AnimatedSection>
-
+        <SkillsSection />
+        
         <AnimatedSection>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-8">Let&apos;s Connect</h2>
