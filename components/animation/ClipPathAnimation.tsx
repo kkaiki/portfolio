@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-const ClipPathSection = ({ children }: { children: React.ReactNode }) => {
+const ClipPathAnimation = ({ children }: { children: React.ReactNode }) => {
     const ref = useRef<HTMLDivElement>(null)
     const { scrollYProgress } = useScroll({
       target: ref,
@@ -24,4 +24,4 @@ const ClipPathSection = ({ children }: { children: React.ReactNode }) => {
     )
   }
   
-export default ClipPathSection
+export default ClipPathAnimation

@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
+const FadeInWhenVisibleAnimation = ({ children }: { children: React.ReactNode }) => {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true })
   
@@ -30,4 +30,4 @@ const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
     )
   }
   
-    export default FadeInWhenVisible
+    export default FadeInWhenVisibleAnimation

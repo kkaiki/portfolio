@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
 import Image from 'next/image'
-import SkillsSection from '@/components/SkillSection'
-import LoadingAnimation from '@/components/LoadingAnimation';
+import SkillsSection from '@/components/section/SkillSection'
+import LoadingAnimation from '@/components/animation/LoadingAnimation';
 import ExperienceSection from '@/components/section/ExperienceSection';
-import FadeInWhenVisible from '@/components/animation/FadeInWhenVisible'
-import AnimatedSection from '@/components/animation/ClipPathSection'
+import FadeInWhenVisibleAnimation from '@/components/animation/FadeInWhenVisibleAnimation'
+import ClipPathAnimation from '@/components/animation/ClipPathAnimation'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
@@ -92,7 +92,7 @@ export default function DynamicScrollPortfolio() {
       />
 
       <div className="relative">
-        <AnimatedSection>
+        <ClipPathAnimation>
           <div className="text-center">
             <Image 
               src="/profile.jpg" 
@@ -110,7 +110,7 @@ export default function DynamicScrollPortfolio() {
               <ChevronDown className="w-8 h-8 mx-auto" />
             </motion.div>
           </div>
-        </AnimatedSection>
+        </ClipPathAnimation>
 
         <ExperienceSection />
 
@@ -132,20 +132,20 @@ export default function DynamicScrollPortfolio() {
                   description: "Pursuing a degree in Data science with a focus on AI and machine learning."
                 },
               ].map((education, index) => (
-                <FadeInWhenVisible key={index}>
+                <FadeInWhenVisibleAnimation key={index}>
                   <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105">
                     <h3 className="text-3xl font-bold text-white">{education.title}</h3>
                     <p className="text-gray-400">{education.location}</p>
                     <p className="text-gray-500">{education.duration}</p>
                     <p className="text-gray-300 mt-2">{education.description}</p>
                   </div>
-                </FadeInWhenVisible>
+                </FadeInWhenVisibleAnimation>
               ))}
             </div>
           </div>
         </ZoomInSection>
 
-        <AnimatedSection>
+        <ClipPathAnimation>
             <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold mb-8">Featured Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -153,7 +153,7 @@ export default function DynamicScrollPortfolio() {
               { title: "DevInsight", desc: "It is something created in our circle, and it can be integrated with Discord, allowing us to track the time spent working with editors like Vecode", url: "https://github.com/kkaiki/DevInsight" },
               { title: "My Portfolio", desc: "", url: "https://github.com/kkaiki/portfolio" },
             ].map((project, index) => (
-              <FadeInWhenVisible key={index}>
+              <FadeInWhenVisibleAnimation key={index}>
             <Card className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
             <CardContent className="p-6">
             <h3 className="text-2xl font-bold mb-2 text-white">{project.title}</h3>
@@ -168,15 +168,15 @@ export default function DynamicScrollPortfolio() {
             </Button>
             </CardContent>
             </Card>
-              </FadeInWhenVisible>
+              </FadeInWhenVisibleAnimation>
               ))}
             </div>
             </div>
-        </AnimatedSection>
+        </ClipPathAnimation>
 
         <SkillsSection />
         
-        <AnimatedSection>
+        <ClipPathAnimation>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-8">Let&apos;s Connect</h2>
             <div className="flex justify-center space-x-4 mb-8">
@@ -203,14 +203,14 @@ export default function DynamicScrollPortfolio() {
               </Button>
             </div>
           </div>
-        </AnimatedSection>
+        </ClipPathAnimation>
 
-        <AnimatedSection>
+        <ClipPathAnimation>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-8">Thank You!</h2>
             <p className="text-xl">Thank you for visiting my portfolio. I hope you enjoyed it!</p>
           </div>
-        </AnimatedSection>
+        </ClipPathAnimation>
       </div>
 
       <ParallaxText baseVelocity={-5}>Innovate • Create • Inspire</ParallaxText>

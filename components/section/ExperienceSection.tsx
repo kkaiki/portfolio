@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import FadeInWhenVisible from '@/components/animation/FadeInWhenVisible'
+import FadeInWhenVisible from '@/components/animation/FadeInWhenVisibleAnimation'
 import ZoomOutAnimation from '@/components/animation/ZoomOutAnimation'
 
 const ExperienceSection = () => {
