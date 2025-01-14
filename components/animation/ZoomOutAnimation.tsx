@@ -8,7 +8,7 @@ const ZoomOutAnimation = ({ children }: { children: React.ReactNode }) => {
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.2, 1], [1, 0, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.9, 1], [1, 0, 0]);
 
   return (
     <div ref={ref} className="h-[200vh] relative">

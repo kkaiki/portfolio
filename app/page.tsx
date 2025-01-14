@@ -11,30 +11,11 @@ import LoadingAnimation from '@/components/animation/LoadingAnimation';
 import ExperienceSection from '@/components/section/ExperienceSection';
 import FadeInWhenVisibleAnimation from '@/components/animation/FadeInWhenVisibleAnimation'
 import ClipPathAnimation from '@/components/animation/ClipPathAnimation'
+import ZoomInAnimation from '@/components/animation/ZoomInAnimation'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
-}
-
-const ZoomInSection = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  })
-
-  const scale = useTransform(scrollYProgress, [0, 0.2, 1], [0, 1, 1])
-
-  return (
-    <div ref={ref} className="h-[200vh] relative">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        <motion.div style={{ scale }}>
-          {children}
-        </motion.div>
-      </div>
-    </div>
-  )
 }
 
 const ParallaxText = ({ children, baseVelocity = 100 }: { children: React.ReactNode; baseVelocity?: number }) => {
@@ -114,7 +95,7 @@ export default function DynamicScrollPortfolio() {
 
         <ExperienceSection />
 
-        <ZoomInSection>
+        <ZoomInAnimation>
           <div className="container mx-auto px-4 py-8">
             <div className="space-y-8">
               <h2 className="text-5xl font-extrabold mb-8 text-gradient">Education</h2>
@@ -143,7 +124,7 @@ export default function DynamicScrollPortfolio() {
               ))}
             </div>
           </div>
-        </ZoomInSection>
+        </ZoomInAnimation>
 
         <ClipPathAnimation>
             <div className="container mx-auto px-4">
