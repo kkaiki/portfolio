@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import AnimatedSection from '@/components/animation/animated'
 import FadeInWhenVisible from '@/components/animation/FadeInWhenVisible'
+import ZoomOutAnimation from '@/components/animation/ZoomOutAnimation'
 
 const ExperienceSection = () => {
     const [showFullContent, setShowFullContent] = useState(false);
@@ -32,7 +32,7 @@ const ExperienceSection = () => {
     }, []);
   
     return (
-      <AnimatedSection>
+      <ZoomOutAnimation>
         <div className={`container mx-auto px-4 py-8 ${isMobile ? 'h-screen overflow-auto' : ''}`}>
           <motion.div
             initial={{ opacity: 1 }}
@@ -97,7 +97,7 @@ const ExperienceSection = () => {
             </motion.div>
           )}
         </div>
-      </AnimatedSection>
+      </ZoomOutAnimation>
     );
   };
 

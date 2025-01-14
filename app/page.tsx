@@ -10,7 +10,7 @@ import SkillsSection from '@/components/SkillSection'
 import LoadingAnimation from '@/components/LoadingAnimation';
 import ExperienceSection from '@/components/section/ExperienceSection';
 import FadeInWhenVisible from '@/components/animation/FadeInWhenVisible'
-import AnimatedSection from '@/components/animation/animated'
+import AnimatedSection from '@/components/animation/ClipPathSection'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
