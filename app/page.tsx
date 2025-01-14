@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
 import Image from 'next/image'
 import SkillsSection from '@/components/section/SkillSection'
@@ -12,7 +11,6 @@ import ExperienceSection from '@/components/section/ExperienceSection';
 import FadeInWhenVisibleAnimation from '@/components/animation/FadeInWhenVisibleAnimation'
 import ClipPathAnimation from '@/components/animation/ClipPathAnimation'
 import ZoomInAnimation from '@/components/animation/ZoomInAnimation'
-import ZoomOutAnimation from '@/components/animation/ZoomOutAnimation'
 import FeatureSection from '@/components/section/FeatureSection'
 
 const wrap = (min: number, max: number, v: number) => {
