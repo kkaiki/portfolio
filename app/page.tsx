@@ -12,6 +12,7 @@ import ExperienceSection from '@/components/section/ExperienceSection';
 import FadeInWhenVisibleAnimation from '@/components/animation/FadeInWhenVisibleAnimation'
 import ClipPathAnimation from '@/components/animation/ClipPathAnimation'
 import ZoomInAnimation from '@/components/animation/ZoomInAnimation'
+import ZoomOutAnimation from '@/components/animation/ZoomOutAnimation'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
