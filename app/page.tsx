@@ -1,38 +1,20 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useSpring, useInView, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
 import Image from 'next/image'
 import SkillsSection from '@/components/SkillSection'
 import LoadingAnimation from '@/components/LoadingAnimation';
+import ExperienceSection from '@/components/section/ExperienceSection';
+import FadeInWhenVisible from '@/components/animation/FadeInWhenVisible'
+import AnimatedSection from '@/components/animation/animated'
 
 const wrap = (min: number, max: number, v: number) => {
   const rangeSize = max - min
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
-}
-
-const AnimatedSection = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  })
-
-  const clipProgress = useTransform(scrollYProgress, [0, 0.4, 0.6], [100, 100, 0])
-  const clip = useTransform(clipProgress, (v) => `inset(0 0 ${100 - v}% 0)`)
-
-  return (
-    <div ref={ref} className="h-[200vh] relative">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        <motion.div style={{ clipPath: clip }}>
-          {children}
-        </motion.div>
-      </div>
-    </div>
-  )
 }
 
 const ZoomInSection = ({ children }: { children: React.ReactNode }) => {
@@ -52,33 +34,6 @@ const ZoomInSection = ({ children }: { children: React.ReactNode }) => {
         </motion.div>
       </div>
     </div>
-  )
-}
-
-const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        transition: {
-          duration: 0.8,
-          y: {
-            type: "spring",
-            damping: 5,
-            stiffness: 100,
-            restDelta: 0.001
-          }
-        }
-      } : { opacity: 0, y: 50 }}
-    >
-      {children}
-    </motion.div>
   )
 }
 
@@ -119,101 +74,6 @@ const ParallaxText = ({ children, baseVelocity = 100 }: { children: React.ReactN
     </div>
   )
 }
-
-const ExperienceSection = () => {
-  const [showFullContent, setShowFullContent] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize(); // 初期チェック
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowFullContent(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <AnimatedSection>
-      <div className={`container mx-auto px-4 py-8 ${isMobile ? 'h-screen overflow-auto' : ''}`}>
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-        >
-          <h2 className="text-5xl font-extrabold mb-8 text-gradient">Experience</h2>
-        </motion.div>
-
-        {showFullContent && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Wevnal Inc.",
-                  location: "Tokyo",
-                  duration: "2024 Jun - Present",
-                  description: "Based on my backend experience, I created a Docker environment from scratch and executed a task to categorize conversation data using machine learning.",
-                  logo: "/company/wevnal.png"
-                },
-                {
-                  title: "Chobirich Inc.",
-                  location: "Tokyo",
-                  duration: "2024 May - 2024 April",
-                  description: "Working as a backend engineer using Laravel.",
-                  logo: "/company/chobirich.jpg"
-                },
-                {
-                  title: "Partsone Inc.",
-                  location: "Tokyo",
-                  duration: "2023 Jun - 2024 Jul",
-                  description: "Contributed to the development of a specialized website for selling used automotive parts. Primarily worked on the backend using Laravel, and engaged in frontend development with JavaScript and TypeScript using React.",
-                  logo: "/company/partsone.png"
-                }
-              ].map((experience, index) => (
-                <FadeInWhenVisible key={index}>
-                  <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-4 shadow-lg transform transition-transform hover:scale-105">
-                    <div className="flex items-center">
-                      {experience.logo && (
-                        <Image
-                          src={experience.logo}
-                          alt={`${experience.title} logo`}
-                          className="mr-4"
-                          width={30}
-                          height={30}
-                        />
-                      )}
-                      <h3 className="text-2xl font-bold text-white">{experience.title}</h3>
-                    </div>
-                    <div className="mt-2">
-                      <p className="text-gray-400">{experience.location}</p>
-                      <p className="text-gray-500">{experience.duration}</p>
-                      <p className="text-gray-300 mt-2">{experience.description}</p>
-                    </div>
-                  </div>
-                </FadeInWhenVisible>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </AnimatedSection>
-  );
-};
 
 export default function DynamicScrollPortfolio() {
   const { scrollYProgress } = useScroll()
