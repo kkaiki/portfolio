@@ -16,7 +16,7 @@ const LoadingAnimation = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // アニメーション時間は2秒のまま
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
