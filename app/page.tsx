@@ -4,13 +4,11 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import SkillsSection from '@/components/section/SkillSection'
 import LoadingAnimation from '@/components/animation/LoadingAnimation';
 import ExperienceSection from '@/components/section/ExperienceSection';
-import ClipPathAnimation from '@/components/animation/ClipPathAnimation'
 import FeatureSection from '@/components/section/FeatureSection'
-import ParallaxTextAnimation from '@/components/animation/ParallaxTextAnimation'
 import HeroSection from '@/components/section/HeroSection'
 import EducationSection from '@/components/section/EducationSection'
 import ConnectSection from '@/components/section/ConnectSection'
-
+import ThankYouSection from "@/components/section/ThankYouSection"
 
 export default function DynamicScrollPortfolio() {
   const { scrollYProgress } = useScroll()
@@ -41,16 +39,9 @@ export default function DynamicScrollPortfolio() {
         
         <ConnectSection />
 
-        <ClipPathAnimation>
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-8">Thank You!</h2>
-            <p className="text-xl">Thank you for visiting my portfolio. I hope you enjoyed it!</p>
-          </div>
-        </ClipPathAnimation>
+        <ThankYouSection />
+
       </div>
-
-      <ParallaxTextAnimation baseVelocity={-5}>Innovate • Create • Inspire</ParallaxTextAnimation>
-
       <style jsx global>{`
         html {
           scroll-behavior: smooth;
