@@ -40,7 +40,6 @@ export default function DynamicScrollPortfolio() {
         <ConnectSection />
 
         <ThankYouSection />
-
       </div>
       <style jsx global>{`
         html {

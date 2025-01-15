@@ -16,9 +16,8 @@ const HeroSection = () => {
         />
         <h1 className="text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
         <p className="text-xl mb-4">
-          I&apos;m a student at Seikei University in Tokyo, passionate about becoming a full stack engineer. 
-          I aim to grow in the world of technology and create innovative solutions. 
-          I&apos;m particularly interested in web development and AI, and I&apos;m constantly learning new technologies.
+            I aim to grow in the world of technology and create innovative solutions. 
+            I&apos;m particularly interested in web development and AI, and I&apos;m constantly learning new technologies.
         </p>
         <motion.div
           animate={{ y: [0, 10, 0] }}
